@@ -101,18 +101,6 @@ See [`SHOWCASE_SCRIPT.md`](SHOWCASE_SCRIPT.md) for a concise 90-second project d
 - `mart_monthly_payment_kpis`: operational payment KPIs by country
 - `mart_data_quality_exceptions`: rejected rows with clear reasons
 
-## Publish to GitHub
-
-```powershell
-git init
-git branch -M main
-git add .
-git commit -m "Build regulatory payments dbt portfolio project"
-git remote add origin https://github.com/YOUR_GITHUB_USERNAME/regulatory-payments-dbt.git
-git push -u origin main
-```
-
-Before publishing, replace `YOUR_GITHUB_USERNAME` in the badge URL at the top of this README.
 
 ## Tech stack
 
