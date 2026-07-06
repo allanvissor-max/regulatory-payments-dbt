@@ -1,6 +1,6 @@
 # Regulatory Payments Analytics — dbt + SQLite
 
-[![dbt CI](https://github.com/YOUR_GITHUB_USERNAME/regulatory-payments-dbt/actions/workflows/dbt_ci.yml/badge.svg)](https://github.com/YOUR_GITHUB_USERNAME/regulatory-payments-dbt/actions/workflows/dbt_ci.yml)
+[![dbt CI](https://github.com/allanvissor-max/regulatory-payments-dbt/actions/workflows/dbt_ci.yml/badge.svg)](https://github.com/allanvissor-max/regulatory-payments-dbt/actions/workflows/dbt_ci.yml)
 
 A portfolio-ready dbt project that turns raw payments data into **tested, documented and auditable regulatory reporting marts**.
 
