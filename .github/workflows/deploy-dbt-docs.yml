@@ -28,12 +28,23 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install dbt
-        run: pip install -r requirements.txt
+            - name: Build dbt project
+        env:
+          DBT_SQLITE_MAIN_DB: data/regulatory_payments.db
+        run: |
+          dbt seed --profiles-dir .
+          dbt run --profiles-dir .
+          dbt test --profiles-dir .
 
       - name: Generate dbt documentation
+        env:
+          DBT_SQLITE_MAIN_DB: data/regulatory_payments.db
         run: dbt docs generate --profiles-dir .
 
+      - name: Build static docs site
+        env:
+          DBT_SQLITE_MAIN_DB: data/regulatory_payments.db
+        run: dbt docs generate --static --profiles-dir . --target-path docs_site
       - name: Build static docs site
         run: dbt docs generate --static --profiles-dir . --target-path docs_site
 
