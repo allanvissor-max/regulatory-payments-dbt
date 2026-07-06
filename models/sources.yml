@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: raw
+    description: |
+      Synthetic source extracts for a payments platform. The raw layer deliberately includes
+      a small number of malformed or duplicate records so that the project can demonstrate
+      data-quality rules and an auditable exception mart.
+    schema: raw
+    tables:
+      - name: raw_customers
+        description: Customer master extract. No personal data is included.
+      - name: raw_transactions
+        description: Payment transaction extract. `amount_gbp` is loaded as text and converted in staging.

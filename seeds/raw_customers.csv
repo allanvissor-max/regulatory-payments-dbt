@@ -1,0 +1,13 @@
+customer_id,customer_country,customer_since_date,customer_type
+C001,UK,2021-09-15,personal
+C002,United Kingdom,2020-04-21,business
+C003,US,2022-03-18,personal
+C004,USA,2021-10-07,business
+C005,EE,2021-01-30,personal
+C006,DE,2021-06-01,business
+C007,UK,2021-12-12,personal
+C008,US,2021-05-20,personal
+C009,United States,2022-05-04,business
+C010,FI,2021-03-22,personal
+C011,UK,2022-08-10,personal
+C011,UK,2022-08-10,personal

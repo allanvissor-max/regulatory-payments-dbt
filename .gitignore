@@ -1,0 +1,19 @@
+# dbt artifacts
+target/
+dbt_packages/
+logs/
+
+# Local SQLite files
+data/*.db
+data/*.db-shm
+data/*.db-wal
+
+# Python and editor files
+.venv/
+__pycache__/
+.vscode/
+.idea/
+.DS_Store
+
+# dbt anonymous usage identifier
+.user.yml

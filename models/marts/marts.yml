@@ -1,0 +1,67 @@
+version: 2
+
+models:
+  - name: fct_payments
+    description: |
+      Trusted payment fact table at transaction grain. It excludes records that failed the
+      project’s data-quality rules, while retaining negative signed amounts for refunds and
+      calculating an absolute GBP volume for regulatory reporting.
+    columns:
+      - name: transaction_id
+        description: Unique payment transaction identifier after duplicate handling.
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: Standardized customer identifier.
+        data_tests:
+          - not_null
+      - name: transaction_date
+        description: Date when the payment was initiated.
+        data_tests:
+          - not_null
+      - name: volume_gbp
+        description: Absolute GBP-equivalent payment volume used for reporting.
+        data_tests:
+          - not_null
+          - non_negative
+      - name: currency_route
+        description: Standardized three-letter currency route in the form `AAA-->BBB`.
+        data_tests:
+          - valid_currency_route
+
+  - name: mart_regulatory_payment_volume
+    description: |
+      Monthly regulatory reporting mart for a defined reporting period. It implements three
+      requirements: UK cross-currency GBP routes, US cross-currency payments, and US same-currency payments.
+    columns:
+      - name: reporting_requirement
+        description: Regulatory report category derived from customer country and payment route.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['R1_UK_cross_currency_GBP_route', 'R2_US_cross_currency', 'R2_US_same_currency']
+          - not_null
+      - name: transaction_month
+        description: First day of the transaction month.
+        data_tests:
+          - not_null
+      - name: total_volume_gbp
+        description: Sum of absolute payment volumes in GBP.
+        data_tests:
+          - non_negative
+
+  - name: mart_monthly_payment_kpis
+    description: Monthly operational payment KPIs segmented by customer country.
+    columns:
+      - name: transaction_month
+        data_tests:
+          - not_null
+      - name: total_volume_gbp
+        data_tests:
+          - non_negative
+
+  - name: mart_data_quality_exceptions
+    description: |
+      Auditable exceptions mart. These records are intentionally excluded from `fct_payments`;
+      their presence demonstrates that the pipeline surfaces and explains data-quality problems instead of silently dropping them.

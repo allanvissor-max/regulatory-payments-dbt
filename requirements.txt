@@ -1,0 +1,3 @@
+# The SQLite adapter's documentation recommends matching its major/minor version to dbt Core.
+dbt-core==1.10.22
+dbt-sqlite==1.10.0

@@ -1,0 +1,45 @@
+name: 'regulatory_payments_dbt'
+version: '1.0.0'
+config-version: 2
+
+profile: 'regulatory_payments_dbt'
+
+model-paths: ['models']
+analysis-paths: ['analyses']
+test-paths: ['tests']
+seed-paths: ['seeds']
+macro-paths: ['macros']
+clean-targets:
+  - 'target'
+  - 'dbt_packages'
+
+models:
+  regulatory_payments_dbt:
+    +materialized: table
+    staging:
+      +schema: staging
+      +tags: ['staging', 'data_quality']
+    intermediate:
+      +schema: intermediate
+      +tags: ['intermediate']
+    marts:
+      +schema: marts
+      +tags: ['mart', 'reporting']
+
+seeds:
+  regulatory_payments_dbt:
+    +schema: raw
+    raw_customers:
+      +column_types:
+        customer_id: TEXT
+        customer_country: TEXT
+        customer_since_date: TEXT
+        customer_type: TEXT
+    raw_transactions:
+      +column_types:
+        raw_row_id: INTEGER
+        transaction_id: TEXT
+        customer_id: TEXT
+        transaction_date: TEXT
+        currency_route: TEXT
+        amount_gbp: TEXT

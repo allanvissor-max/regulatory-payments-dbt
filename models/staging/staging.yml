@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: Customer master data standardized from the raw seed extract.
+    columns:
+      - name: customer_id
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_country
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['UK', 'US', 'EE', 'DE', 'FI']
+      - name: customer_since_date
+        data_tests:
+          - not_null
+
+  - name: stg_transactions
+    description: Transaction data cleaned and parsed, retaining invalid records for downstream exception logging.
+    columns:
+      - name: raw_row_id
+        data_tests:
+          - unique
+          - not_null
+      - name: has_valid_currency_route
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+                quote: false
