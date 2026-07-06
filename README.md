@@ -1,4 +1,5 @@
 # Regulatory Payments Analytics — dbt + SQLite
+🔗 **[Open interactive dbt documentation](https://allanvissor-max.github.io/regulatory-payments-dbt/)**
 
 [![dbt CI](https://github.com/allanvissor-max/regulatory-payments-dbt/actions/workflows/dbt_ci.yml/badge.svg)](https://github.com/allanvissor-max/regulatory-payments-dbt/actions/workflows/dbt_ci.yml)
 
