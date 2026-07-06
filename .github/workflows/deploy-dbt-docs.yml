@@ -2,8 +2,7 @@ name: Deploy dbt Docs
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -12,51 +11,48 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      DBT_SQLITE_MAIN_DB: ${{ github.workspace }}/data/warehouse.db
+      DBT_SQLITE_SCHEMA_DIR: ${{ github.workspace }}/data
+
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: "3.11"
 
-            - name: Build dbt project
-        env:
-          DBT_SQLITE_MAIN_DB: data/regulatory_payments.db
+      - name: Install dbt dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build dbt project and generate docs
         run: |
-          dbt seed --profiles-dir .
-          dbt run --profiles-dir .
-          dbt test --profiles-dir .
-
-      - name: Generate dbt documentation
-        env:
-          DBT_SQLITE_MAIN_DB: data/regulatory_payments.db
-        run: dbt docs generate --profiles-dir .
-
-      - name: Build static docs site
-        env:
-          DBT_SQLITE_MAIN_DB: data/regulatory_payments.db
-        run: dbt docs generate --static --profiles-dir . --target-path docs_site
-      - name: Build static docs site
-        run: dbt docs generate --static --profiles-dir . --target-path docs_site
+          dbt seed --full-refresh --profiles-dir .
+          dbt build --profiles-dir .
+          dbt docs generate --profiles-dir .
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: docs_site
+          path: target
 
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
     needs: build
 
