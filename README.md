@@ -82,7 +82,7 @@ Or run the included script:
 .\scripts\run_local.ps1
 ```
 
-## What to show in an interview
+## What to show
 
 1. Open **dbt docs** and show the lineage graph.
 2. Open `models/marts/mart_regulatory_payment_volume.sql` and explain the business rules.
@@ -90,7 +90,7 @@ Or run the included script:
 4. Run `dbt build` and show the automated test results.
 5. Open `.github/workflows/dbt_ci.yml` and explain that the quality gate runs on every GitHub push or pull request.
 
-## Interview walkthrough
+## Walkthrough
 
 See [`SHOWCASE_SCRIPT.md`](SHOWCASE_SCRIPT.md) for a concise 90-second project demo.
 
