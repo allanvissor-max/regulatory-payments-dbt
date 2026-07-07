@@ -82,13 +82,13 @@ raw_transactions ─> stg_transactions ┘                           └──�
 Invalid records are not silently deleted.
 
 Each transaction is evaluated against technical and business validation rules, including:
-*missing transaction ID;
-*duplicate transaction ID;
-*invalid or missing transaction date;
-*missing or non-numeric amount;
-*invalid currency route;
-*customer reference not found in the customer source;
-*transaction date before customer onboarding date.
+- missing transaction ID;
+- duplicate transaction ID;
+- invalid or missing transaction date;
+- missing or non-numeric amount;
+- invalid currency route;
+- customer reference not found in the customer source;
+- transaction date before customer onboarding date.
 
 Records that pass all checks are loaded into the trusted fct_payments table.
 
