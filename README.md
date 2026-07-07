@@ -19,7 +19,7 @@ Enrichment and data-quality controls
 Trusted fact table
     ↓
 Regulatory reporting, KPI and data-quality exception marts
-```text
+```
 
 ## Business problem
 
