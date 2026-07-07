@@ -1,11 +1,24 @@
-# Regulatory Payments Analytics — dbt + SQLite
+# Regulatory Payments Analytics — dbt + SQL
 🔗 **[Open interactive dbt documentation](https://allanvissor-max.github.io/regulatory-payments-dbt/)**
 
 [![dbt CI](https://github.com/allanvissor-max/regulatory-payments-dbt/actions/workflows/dbt_ci.yml/badge.svg)](https://github.com/allanvissor-max/regulatory-payments-dbt/actions/workflows/dbt_ci.yml)
 
-A portfolio-ready dbt project that turns raw payments data into **tested, documented and auditable regulatory reporting marts**.
+# Regulatory Payments dbt Project
 
-> **Data note:** all CSV data is synthetic. The project intentionally includes a few bad records so that the data-quality workflow is visible rather than theoretical.
+An end-to-end analytics engineering portfolio project that demonstrates how raw payment and customer data can be transformed into trusted, documented and auditable reporting outputs.
+
+The project is built with **dbt Core** and **SQLite** and follows a layered data architecture:
+
+```text
+Raw source data
+    ↓
+Staging and standardisation
+    ↓
+Enrichment and data-quality controls
+    ↓
+Trusted fact table
+    ↓
+Regulatory reporting, KPI and data-quality exception marts
 
 ## Business problem
 
@@ -16,6 +29,18 @@ A payments business needs reproducible monthly reporting for:
 - **R2:** US customers’ same-currency payment volume
 
 The pipeline must make its definitions explicit, validate quality, exclude invalid records from trusted facts and keep an audit trail of every exception.
+
+## Business context
+
+Financial reporting cannot rely directly on raw operational data. Source records may contain missing identifiers, duplicate transactions, invalid currency routes, orphan customer references or transactions that occurred before a customer relationship began.
+
+This project models a simplified regulatory payments reporting process. It demonstrates how those risks can be controlled before data is used for reporting.
+
+The pipeline produces three reporting-ready outputs:
+
+Regulatory payment volume mart — monthly payment volumes and transaction counts by reporting requirement, customer country and transaction month.
+Monthly payment KPI mart — trusted-payment metrics for analytical reporting.
+Data-quality exceptions mart — invalid or suspicious records retained with transparent rejection reasons for investigation.
 
 ## Architecture
 
@@ -102,6 +127,7 @@ See [`SHOWCASE_SCRIPT.md`](SHOWCASE_SCRIPT.md) for a concise 90-second project d
 - `mart_monthly_payment_kpis`: operational payment KPIs by country
 - `mart_data_quality_exceptions`: rejected rows with clear reasons
 
+> **Data note:** all CSV data is synthetic. The project intentionally includes a few bad records so that the data-quality workflow is visible rather than theoretical.
 
 ## Tech stack
 
