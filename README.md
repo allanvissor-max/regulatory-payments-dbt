@@ -65,31 +65,30 @@ raw_transactions ─> stg_transactions ┘                           └──�
 ```
 
 ##  What this project demonstrates
-Layered dbt architecture: raw → staging → intermediate → marts
-SQL-based data transformation and modelling
-Standardisation of raw identifiers, dates, monetary amounts and currency routes
-Parsing semi-structured currency-route data into reusable attributes
-Customer and transaction data integration
-Duplicate detection using window functions
-Reusable data-quality flags and business-rule validation
-Controlled separation of trusted records and rejected records
-Custom dbt tests alongside standard tests such as not_null and unique
-dbt documentation, lineage and column-level metadata
-Git version control and automated CI validation through GitHub Actions
-Data-quality approach
+- Layered dbt architecture: raw → staging → intermediate → marts
+- SQL-based data transformation and modelling
+- Standardisation of raw identifiers, dates, monetary amounts and currency routes
+- Parsing semi-structured currency-route data into reusable attributes
+- Customer and transaction data integration
+- Duplicate detection using window functions
+- Reusable data-quality flags and business-rule validation
+- Controlled separation of trusted records and rejected records
+- Custom dbt tests alongside standard tests such as not_null and unique
+- dbt documentation, lineage and column-level metadata
+- Git version control and automated CI validation through GitHub Actions
+- Data-quality approach
 
 ## Data Quality Approach
 Invalid records are not silently deleted.
 
 Each transaction is evaluated against technical and business validation rules, including:
-
-missing transaction ID;
-duplicate transaction ID;
-invalid or missing transaction date;
-missing or non-numeric amount;
-invalid currency route;
-customer reference not found in the customer source;
-transaction date before customer onboarding date.
+*missing transaction ID;
+*duplicate transaction ID;
+*invalid or missing transaction date;
+*missing or non-numeric amount;
+*invalid currency route;
+*customer reference not found in the customer source;
+*transaction date before customer onboarding date.
 
 Records that pass all checks are loaded into the trusted fct_payments table.
 
