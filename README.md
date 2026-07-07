@@ -128,7 +128,7 @@ See [`SHOWCASE_SCRIPT.md`](SHOWCASE_SCRIPT.md) for a concise 90-second project d
 - `mart_monthly_payment_kpis`: operational payment KPIs by country
 - `mart_data_quality_exceptions`: rejected rows with clear reasons
 
-> **Data note:** all CSV data is synthetic. The project intentionally includes a few bad records so that the data-quality workflow is visible rather than theoretical.
+**Data note:** all CSV data is synthetic. The project intentionally includes a few bad records so that the data-quality workflow is visible rather than theoretical.
 
 ## Tech stack
 
