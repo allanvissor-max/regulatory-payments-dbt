@@ -1,9 +1,7 @@
-# Regulatory Payments Analytics — dbt + SQL
+# Regulatory Payments Analytics — dbt Core + SQL
 🔗 **[Open interactive dbt documentation](https://allanvissor-max.github.io/regulatory-payments-dbt/)**
 
 [![dbt CI](https://github.com/allanvissor-max/regulatory-payments-dbt/actions/workflows/dbt_ci.yml/badge.svg)](https://github.com/allanvissor-max/regulatory-payments-dbt/actions/workflows/dbt_ci.yml)
-
-# Regulatory Payments dbt Project
 
 An end-to-end analytics engineering portfolio project that demonstrates how raw payment and customer data can be transformed into trusted, documented and auditable reporting outputs.
 
